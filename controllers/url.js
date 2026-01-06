@@ -12,7 +12,9 @@ async function generateNewShortUrl(req,res){
             orginalUrl:orgUrl,
             timestamp:[]
         });
-        return res.status(201).json({id:shortUrl});
+        return res.render("home",{
+            id:shortUrl
+        })
     } catch(err){
         return res.status(500).json({status:"error" , message:err.message});
     }
