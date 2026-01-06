@@ -5,8 +5,8 @@ const staticRouter = express.Router();
 
 
 staticRouter.get('/',async(req,res) => {
-    const allUrl = await Url.find({});
-    return res.render("home",{allUrl});
+    const urls = await Url.find({});
+    return res.render("home",{urls});
 });
 
 module.exports = staticRouter ;

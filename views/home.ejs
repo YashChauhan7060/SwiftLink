@@ -8,14 +8,6 @@
 
     <h1>URL Shortener</h1>
 
-    <% if (locals.id) { %>
-        <p>
-            URL Generated:
-            <a href="/api/url/<%= id %>" target="_blank">
-                http://localhost:8000/api/url/<%= id %>
-            </a>
-        </p>
-    <% } %>
 
     <div>
         <form method="POST" action="/api/url">
@@ -30,6 +22,36 @@
             <button type="submit">Generate</button>
         </form>
     </div>
+
+
+    <% if (locals.urls && urls.length > 0) { %>
+    <table >
+        <thead>
+            <tr>
+                <th>S. No</th>
+                <th>Short URL</th>
+                <th>Original URL</th>
+                <th>Clicks</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% urls.forEach((url, index) => { %>
+                <tr>
+                    <td><%= index + 1 %></td>
+                    <td>
+                        <a href="/api/url/<%= url.shortUrl %>" target="_blank">
+                            <%= url.shortUrl %>
+                        </a>
+                    </td>
+                    <td><%= url.orginalUrl %></td>
+                    <td><%= url.visitHistory.length %></td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+<% } %>
+
+
 
 </body>
 </html>
